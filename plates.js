@@ -1,0 +1,27 @@
+/* Without Any Action — plates. All US government works, public domain. */
+window.PLATES = {
+  memo1942: { file: "memo1942.jpg", title: "'For the purpose of recording the call', 14 June 1942", cap: "Special Agent McWhorter's memo on the call from 'Frank Daniel Postorius', read into the record as Defendant's Exhibit G.",
+    credit: "Transcript of the military commission, vol. XVI, p. 2583 (27 July 1942). NARA, RG 153, CM 334178 (NAID 6121093); public domain." },
+  cullen1942: { file: "cullen1942.jpg", title: "John C. Cullen, 1942", cap: "The patrolman who met the first four on the beach at Amagansett.",
+    credit: "US Coast Guard photograph, 1942. NARA 26-G-310 (NAID 205588336); public domain." },
+  station1945: { file: "station1945.jpg", title: "Amagansett Lifeboat Station", cap: "The station from which Cullen walked east at 00:10 on 13 June 1942.",
+    credit: "The Coast Guard at War, XVII: Beach Patrol (USCG Historical Section, 1945), p. 4; public domain." },
+  mayport17: { file: "mayport17.jpg", title: "Mayport, 17 June 1942", cap: "The war diary for the night of the landing: YP-31 patrols north of the St. Johns, YP-32 is in port.",
+    credit: "Section Base Mayport-Jacksonville, War Diary, 17 June 1942. NARA (NAID 133928462), image 125; public domain." },
+  mayport26: { file: "mayport26.jpg", title: "Mayport, 26 June 1942", cap: "For the first time: 'Patrolling area between St. Johns Lightship and Ponte Vedra, Fla.' – the night after the FBI dug up the boxes.",
+    credit: "Section Base Mayport-Jacksonville, War Diary, 26 June 1942. NARA (NAID 133928462), image 136; public domain." },
+  mickler1952: { file: "mickler1952.jpg", title: "Ponte Vedra Beach and the dunes to the south", cap: "The beach road and the empty coast where the four boxes were buried, about four miles south of Ponte Vedra.",
+    credit: "U.S. Geological Survey, Mickler Landing, Fla., 1:24,000 (1952), detail; public domain." },
+  commission1942: { file: "commission1942.jpg", title: "The military commission, July 1942", cap: "The commission of seven generals in session, Washington, July 1942.",
+    credit: "US Army Signal Corps photograph, released by the Office of War Information, 1942. Library of Congress, cph.3c34579; public domain." },
+  circular1942: { file: "circular1942.jpg", title: "'Landing of Enemy Agents', 16 July 1942", cap: "What the District Coast Guard Officer in Boston told every station after Amagansett.",
+    credit: "USCG, First Naval District, circular of 16 July 1942, p. 1. NARA Boston, RG 26 (NAID 207525008); public domain." },
+  mounted1945: { file: "mounted1945.jpg", title: "The beach patrol, later", cap: "After 25 July 1942 the Coast Guard built a beach patrol with horses and dogs – armed, unlike Cullen.",
+    credit: "The Coast Guard at War, XVII: Beach Patrol (1945), p. 2; public domain." },
+  dog1945: { file: "dog1945.jpg", title: "Foot patrolman and dog", cap: "'Foot patrolman and dog pounding the beach.'",
+    credit: "The Coast Guard at War, XVII: Beach Patrol (1945), p. 6; public domain." },
+  cullen1943: { file: "cullen1943.jpg", title: "The Legion of Merit, 22 November 1943", cap: "Cullen is decorated for the night at Amagansett.",
+    credit: "US Coast Guard photograph 26-G-11-22-43 (NAID 205588339); public domain." },
+  truman1948: { file: "truman1948.jpg", title: "Clemency, 26 April 1948", cap: "The White House release on Dasch and Burger.",
+    credit: "White House press release, 26 April 1948, p. 1. NARA (NAID 284841056); public domain." }
+};

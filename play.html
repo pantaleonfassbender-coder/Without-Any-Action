@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Without Any Action — Operation Pastorius, 1942</title>
+<meta name="description" content="Two beaches, one telephone call, four versions.">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="game.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='7' y='5' width='18' height='22' fill='%23f3ecd9' stroke='%231d3b5a' stroke-width='2'/%3E%3Cpath d='M11 11 H21 M11 15 H21 M11 19 H17' stroke='%231d3b5a' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body class="play">
+<header class="top">
+  <a class="brand" href="index.html"><strong>Without Any Action</strong><em>Operation Pastorius, Long Island and Florida, June 1942</em></a>
+  <nav><a href="plates.html">Plates</a><a href="guide.html">Guide</a><button id="newBtn" class="uibtn" type="button">New game</button></nav>
+</header>
+<div class="gamewrap">
+  <section class="boardbox">
+    <div class="board" id="board"><canvas id="cv" width="1120" height="720"></canvas></div>
+  </section>
+  <aside class="side-panel">
+    <div class="clock"><span id="when"></span></div>
+    <div id="status" class="panel small"></div>
+    <div id="actions" class="panel small"></div>
+    <div class="btnrow"><button id="endBtn" type="button">Next</button></div>
+    <div id="fixed" class="fixed"></div>
+    <h3>Chronicle <span class="fine">(newest first)</span></h3>
+    <div id="log" class="log"></div>
+  </aside>
+</div>
+<div id="modal" class="modal" hidden><div class="modalbox" id="modalBox"></div></div>
+<footer><p>Cards marked 'The record' come at their dates and times from the sources named on them; everything marked 'Game' is a game value.</p></footer>
+<script src="data-wa.js?v=1"></script>
+<script src="engine.js?v=1"></script>
+<script src="plates.js?v=1"></script>
+<script src="reckoning.js?v=1"></script>
+<script src="game.js?v=1"></script>
+</body>
+</html>

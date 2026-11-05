@@ -1,0 +1,157 @@
+/* Spieloberfläche */
+body.play main{display:none}
+.gamewrap{max-width:1500px; margin:0 auto; padding:.8rem 16px 1rem; display:grid; grid-template-columns:minmax(0,1fr) 370px; gap:1rem; align-items:start}
+.boardbox{min-width:0}
+.boardtools{display:flex; flex-wrap:wrap; gap:.5rem 1rem; align-items:center; margin-bottom:.4rem; font-size:.9rem}
+.boardtools button{font:inherit; width:2rem; height:2rem; border:1px solid var(--line); background:var(--panel); border-radius:6px; cursor:pointer}
+.board{overflow:auto; max-height:76vh; border:1px solid var(--line); border-radius:8px; background:#e8e1d3; touch-action:pan-x pan-y}
+.board canvas{display:block; transform-origin:0 0; cursor:pointer}
+.credit{margin:.3rem 0 0; overflow-wrap:anywhere}
+.side-panel{position:sticky; top:.5rem}
+.clock{font-size:1.4rem; font-variant:small-caps; color:var(--red)}
+.panel.small{padding:.6rem .8rem; margin:.5rem 0; font-size:.9rem}
+.panel.small h4{margin:0 0 .2rem}
+.btnrow{display:flex; gap:.5rem; flex-wrap:wrap}
+.btnrow button,.modalbox button{font:inherit; font-size:.92rem; background:var(--panel); border:1px solid var(--red); color:var(--ink); border-radius:6px; padding:.35rem .8rem; cursor:pointer}
+.btnrow button:hover:not(:disabled),.modalbox button:hover{background:var(--red); color:#fff}
+.btnrow button:disabled{opacity:.45; cursor:default}
+#endBtn{border-width:2px; font-weight:bold}
+.btnrow .btnlink{align-self:center; margin-left:auto; font-size:.92rem}
+.log{max-height:38vh; overflow:auto; font-size:.86rem; border-top:1px solid var(--line)}
+.log .e{padding:.35rem 0; border-bottom:1px dotted var(--line)}
+.log .e .h{color:var(--ink2); font-size:.78rem}
+.log .card{background:#f6ecd9; border-left:3px solid var(--gold); padding:.4rem .6rem; border-radius:0 6px 6px 0}
+.log a{font-size:.78rem}
+.bar{height:6px; background:var(--line); border-radius:3px; overflow:hidden; margin:.2rem 0}
+.bar i{display:block; height:100%; background:var(--ink2)}
+.modal{position:fixed; inset:0; background:rgba(35,28,34,.55); display:flex; align-items:center; justify-content:center; z-index:20; padding:16px}
+.modal[hidden]{display:none}
+.modalbox{background:var(--paper); max-width:760px; width:100%; max-height:90vh; overflow:auto; border-radius:10px; padding:1.2rem 1.4rem; border:2px solid var(--red)}
+.modalbox h2{margin-top:.2rem}
+.choice{display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin:1rem 0}
+.choice button{text-align:left; padding:.8rem; line-height:1.35}
+.choice button b{display:block; font-size:1.05rem}
+.reports{display:grid; grid-template-columns:1fr 1fr; gap:1rem}
+.reports .rep{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:.7rem .9rem; font-size:.92rem}
+.reports .rep.D{border-top:4px solid var(--dt)} .reports .rep.P{border-top:4px solid var(--sow)} .reports .rep.H{border-top:4px solid var(--hist)}
+table.cmp{border-collapse:collapse; width:100%; font-size:.88rem; margin:.6rem 0}
+table.cmp td,table.cmp th{border-bottom:1px solid var(--line); padding:.25rem .4rem; text-align:left; vertical-align:top}
+.verdict{font-size:1.15rem; border-left:3px solid var(--red); padding:.3rem 0 .3rem .9rem; margin:1rem 0}
+@media (max-width:900px){
+  .gamewrap{grid-template-columns:1fr}
+  .side-panel{position:static}
+  .choice,.reports{grid-template-columns:1fr}
+  .board{max-height:62vh}
+}
+
+.log .card.ref{border-left-color:var(--zivil); background:#e9efe4}
+.log .card .q{font-weight:600}
+.log .card .z{display:block; font-size:.78rem; color:var(--ink2); margin-top:.2rem}
+.zmeter{display:flex; align-items:center; gap:.5rem; font-size:.88rem}
+.zmeter .bar{flex:1; height:8px}
+.zmeter .bar i{background:var(--red)}
+.report fieldset{border:1px solid var(--line); border-radius:8px; margin:.6rem 0; padding:.5rem .8rem}
+.report legend{font-weight:bold; padding:0 .3rem}
+.report label{display:block; margin:.2rem 0; cursor:pointer}
+.report .places{display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:.1rem .8rem}
+.report .held{color:var(--tree)} .report .lost{color:var(--sow)}
+.okw{font-family:Georgia,serif; background:#f1ead9; border:1px solid var(--line); border-radius:6px; padding:.6rem .8rem; white-space:pre-line}
+.endcards .card{margin:.4rem 0}
+
+/* defence study additions */
+.log .card.front{border-left-color:var(--dt); background:#eef0e8}
+.log .card.beyond,.modalbox .card.beyond{border-left:3px solid var(--sow); background:#f6e6e1}
+.log .card.file,.modalbox .card.file{border-left:3px solid var(--gold); background:#f6ecd9}
+.log .card.rule{border-left-color:var(--rezeption); background:#efece6}
+.modalbox .card{border-radius:0 6px 6px 0; padding:.5rem .7rem; margin:.5rem 0; font-size:.92rem; border:0; border-left:3px solid var(--line)}
+.card .k{display:block; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink2)}
+.card .src{display:block; font-size:.76rem; color:var(--ink2); margin-top:.2rem; overflow-wrap:anywhere}
+.linkbtn{font:inherit; font-size:.85rem; background:none; border:0; color:var(--red); text-decoration:underline; cursor:pointer; padding:0; margin-top:.3rem}
+.fuelrow{display:grid; grid-template-columns:4.2rem 1fr 2.6rem; gap:.4rem; align-items:center; font-size:.82rem}
+.fuelrow .bar i{background:var(--gold)}
+.report label.share{display:flex; justify-content:space-between; gap:.5rem; align-items:center}
+.report select{font:inherit; font-size:.85rem}
+.choice button span{display:block; margin-top:.3rem}
+/* plates at chronicle cards */
+.plate-th{float:right; display:flex; flex-direction:column; align-items:center; gap:.2rem; width:96px; margin:0 0 .3rem .6rem; padding:.25rem; background:var(--paper); border:1px solid var(--line); border-radius:4px; cursor:zoom-in; font:inherit; font-size:.68rem; line-height:1.15; color:var(--ink2); text-align:center}
+.plate-th img{width:100%; height:72px; object-fit:cover; object-position:top; filter:sepia(.15)}
+.plate-th:hover{border-color:var(--red)}
+.card::after{content:""; display:block; clear:both}
+.lightbox{position:fixed; inset:0; background:rgba(20,16,18,.82); z-index:40; display:flex; align-items:center; justify-content:center; padding:16px}
+.lightbox[hidden]{display:none}
+.lightbox figure{margin:0; max-width:min(1100px,100%); max-height:100%; overflow:auto; background:var(--paper); border-radius:8px; padding:.8rem}
+.lightbox img{display:block; max-width:100%; max-height:72vh; margin:0 auto; border:1px solid var(--line)}
+.lightbox figcaption{font-size:.88rem; margin:.6rem 0 .4rem; color:var(--ink)}
+.lightbox figcaption .src{font-size:.78rem; color:var(--ink2); overflow-wrap:anywhere}
+.lightbox button{font:inherit; font-size:.9rem; background:var(--panel); border:1px solid var(--red); border-radius:6px; padding:.3rem .8rem; cursor:pointer}
+
+/* Three Men, Probably Norwegians */
+.wx{font-size:.86rem; margin:.3rem 0 .5rem; padding:.4rem .6rem; background:#e9eef2; border-radius:6px}
+.wx b{font-variant:small-caps}
+.wx.storm{background:#e4d9de} .wx.hard{background:#e6e3d8}
+.acts{display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.5rem}
+.acts button{font:inherit; font-size:.82rem; background:var(--panel); border:1px solid var(--red); border-radius:5px; padding:.2rem .55rem; cursor:pointer}
+.acts button:hover:not(:disabled){background:var(--red); color:#fff}
+.acts button:disabled{opacity:.4; cursor:default}
+.log .card.plateau{border-left-color:#2f4f6b; background:#eaeff3}
+.log .card.london,.modalbox .card.london{border-left:3px solid #6b5a2f; background:#f3eedf}
+.radio fieldset{border:1px solid var(--line); border-radius:8px; margin:.6rem 0; padding:.4rem .8rem}
+.radio legend{font-weight:bold; padding:0 .3rem}
+.radio label{display:block; margin:.15rem 0; cursor:pointer}
+.sketch{width:100%; border:1px solid var(--line); border-radius:6px; margin:.4rem 0}
+.attlog p{margin:.25rem 0}
+.groups-row{display:flex; gap:.4rem; flex-wrap:wrap; margin:.3rem 0}
+.groups-row button{font:inherit; font-size:.82rem; border:1px solid var(--line); background:var(--panel); border-radius:5px; padding:.15rem .5rem; cursor:pointer}
+.groups-row button.on{border-color:var(--red); background:var(--red); color:#fff}
+.hint{margin:.5rem 0 0; padding:.4rem .6rem; border-left:3px solid var(--line); background:#f1efe9; font-size:.86rem}
+.hint.ok{border-left-color:#a3262a; background:#f6e6e1; font-weight:600}
+.fixed{border-left:3px solid #7a2a2a; background:#f3e6e3; padding:.4rem .6rem; font-size:.84rem; margin:.4rem 0}
+.fixed b{font-variant:small-caps}
+.kv{display:grid; grid-template-columns:auto 1fr; gap:.1rem .7rem; font-size:.88rem}
+.kv span:nth-child(odd){color:var(--ink2)}
+.log .card.district{border-left-color:#6b4a2a; background:#f1ebdf}
+.log .card.market{border-left-color:#2f4f6b; background:#e9eef2}
+.log .card.file,.modalbox .card.file{border-left:3px solid #7a2a2a; background:#f3e6e3}
+.wagebox{display:flex; gap:.4rem; align-items:center; flex-wrap:wrap; margin-top:.3rem}
+.wagebox input{width:4.5rem; font:inherit}
+/* Crystal Clear Waters */
+.side-panel label{display:block; margin:.25rem 0; font-size:.86rem}
+.side-panel select{font:inherit; font-size:.84rem; max-width:100%}
+.btnrow.small{display:flex; flex-wrap:wrap; gap:.3rem}
+.btnrow.small button{font-size:.78rem; padding:.2rem .45rem}
+.opts{display:flex; flex-direction:column; gap:.45rem; margin-top:.8rem}
+.opts button{font:inherit; text-align:left; padding:.5rem .7rem; border:1px solid var(--red); border-radius:6px; background:var(--panel); cursor:pointer}
+.opts button:hover{background:var(--red); color:#fff}
+ul.prologue{font-size:.9rem; padding-left:1.1rem}
+ul.prologue li{margin:.25rem 0}
+.log .card.game{border-left-color:#8a8a8a; background:#f1f1ee}
+.log .card.spring{border-left-color:#1f5f6b; background:#e9f2f2}
+.log .card.trade{border-left-color:#8a6d2f}
+.log .card.firm{border-left-color:#3f6b3a}
+.log .card.file{border-left-color:#5a4a6b; background:#f0edf3}
+.log .card.before{border-left-color:#7a7064}
+.warn{color:#9b3b2e}
+.modalbox.wide{max-width:900px}
+.reck table{border-collapse:collapse; font-size:.84rem; width:100%; margin:.5rem 0 1rem}
+.reck th,.reck td{border-bottom:1px solid var(--line); padding:.2rem .35rem; text-align:right}
+.reck th:first-child,.reck td:first-child{text-align:left}
+.reck td.over{color:#9b3b2e; font-weight:bold}
+.reck h3{margin-top:1.2rem; color:var(--red)}
+.fixed{border-left:3px solid #5a4a6b; background:#f0edf3}
+.reck table.notes td:last-child,.reck table.notes th:last-child{text-align:left}
+/* Most Confused and Bewildering */
+.meter{display:grid; grid-template-columns:1fr 120px 2.2em; gap:.4rem; align-items:center; font-size:.82rem; margin:.15rem 0}
+.meter i{display:block; height:8px; background:var(--red); border-radius:3px}
+.meter b{font-weight:normal; text-align:right}
+label.act{display:block; font-size:.84rem; margin:.2rem 0}
+.reports{margin-top:.5rem; font-size:.82rem}
+.side-panel select{width:100%; font:inherit; font-size:.82rem; margin:.15rem 0 .4rem}
+.log .card.press{border-left-color:#7a2a2a}
+.log .card.island{border-left-color:#3f6b3a}
+.log .card.night{border-left-color:#1d3b5a; background:#eaeff4}
+.log .card.firm{border-left-color:#8a6d2f}
+#cv{width:100%; height:auto; transform:none}
+/* Without Any Action */
+.log .card.beach{border-left-color:#1d3b5a; background:#eaeff4}
+.log .card.you{border-left-color:#3f6b3a; background:#edf2ea}
+.log .card.press{border-left-color:#7a2a2a; background:#f6ecea}

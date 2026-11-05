@@ -4,7 +4,7 @@ Dateien:
 - `itch/without-any-action-itch.zip` (Build: `python itch/build-itch.py`)
 - `itch/cover-630x500.png` (`python itch/make-cover.py`)
 - `itch/screenshot-1…6.png` (`python itch/make-shots.py`, Vorschau „waa-game“ auf Port 8785)
-- Lesebuch „The Documents“: folgt (eigene Datei mit eigenem Preis).
+- Lesebuch: `../reader/itch-upload/Without-Any-Action_The-Documents.zip` (PDF + EPUB, 89 S.; Build `python tools/build.py` im Ordner `reader`), Anzeigename „The Documents – reader (PDF + EPUB)“, **5 USD** (Vorschlag); Umschlag `documents-cover.jpg`.
 
 | Feld | Wert |
 |---|---|
@@ -15,7 +15,7 @@ Dateien:
 | Kind of project | HTML |
 | Release status | Released |
 | Pricing | **No payments** fürs Spiel, *oder* „$0 or donate“; das Lesebuch später als eigene Datei mit eigenem Preis („Set a different price for this file“). Dann muss das Projekt auf „Paid“ mit 0 USD Mindestpreis stehen – wie bei „Crystal Clear Waters“. |
-| Uploads | `without-any-action-itch.zip` → **This file will be played in the browser** |
+| Uploads | 1. `without-any-action-itch.zip` → **This file will be played in the browser** · 2. Lesebuch-ZIP → **Set a different price for this file** (5 USD) |
 | Embed options | Embed in page · Viewport **1280 × 800** |
 | Frame options | ☑ Fullscreen button · ☑ Enable scrollbars · ☐ Mobile friendly · ☐ Automatically start on page load |
 | Genre | Strategy |
@@ -54,3 +54,19 @@ In June 1942 two German U-boats put eight saboteurs ashore with explosives and A
 - Every card names its source. Most come from the transcript of the military commission, the FBI's New York file and the naval war diaries, read at the page images.
 - 12 plates, all US government works in the public domain, including the FBI memo of 14 June and the Mayport war diary for the night of the landing.
 - Free to play.
+
+**The Documents – reader (PDF + EPUB)**
+The record behind the game, read at the page images:
+- the Coast Guardsman and his chief before the military commission;
+- the Eastern Sea Frontier and Mayport war diaries;
+- the Army's beach-patrol order;
+- the war diary of U-584 (German with translation);
+- the FBI agents on the call of 14 June, the man in Washington, the arrests and the boxes in the sand;
+- the FBI's own New York file;
+- the Washington papers from 28 June to 9 August;
+- Proclamation 2561 and the Military Order;
+- Ex parte Quirin;
+- the Coast Guard's own account;
+- the clemency of 1948.
+
+With the four versions, the game's chronicle, a timeline and people. 89 pages. Edited by Pantaleon Fassbender.

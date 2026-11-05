@@ -35,4 +35,6 @@ for f, name in [("mayport-1942-06-17_0722.jpg", "mayport17.jpg"), ("mayport-1942
     im = Image.open(N / f).convert("L"); save(im.crop((0, int(im.height * 0.04), im.width, int(im.height * 0.86))), P / name)
 bp = pymupdf.open(Q / "cg-at-war" / "USCGATWAR-BEACHPATROL.pdf")
 for pno, name in [(5, "station1945.jpg"), (3, "mounted1945.jpg"), (7, "dog1945.jpg")]:
-    im = Image.open(io.BytesIO(bp[pno - 1].get_pixmap(dpi=150).tobytes("png"))).convert("L"); save(im, P / name)
+    im = Image.open(io.BytesIO(bp[pno - 1].get_pixmap(dpi=150).tobytes("png"))).convert("L")
+    if name == "station1945.jpg": im = im.rotate(-90, expand=True)   # the photograph is printed sideways
+    save(im, P / name)

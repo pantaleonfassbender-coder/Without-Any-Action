@@ -13,10 +13,10 @@
   E.newAma = seed => ({ r: seed >>> 0, step: 0, t: 0, desc: 30, evidence: 50, cg: 50, fbiAt: null, seenTrain: false, dec: {}, over: false });
   const AMA_DEC = [
     { id: "watch", title: "Setting the watch", text: "Cullen is due out at 00:10. The order of 11 April says two men to a watch, both ways; the station is short of men and the fog is thick.",
-      note: "Historically Cullen went alone, eastward, unarmed [S]. Every patrol is unarmed in this game.",
+      note: "Historically Cullen went alone, eastward, unarmed [S]. In this game nobody is armed until a report comes in.",
       opts: [["solo", "One man east, as usual"], ["pair", "Two men east, as ordered"], ["both", "Two pairs, east and west – the station nearly empty"]] },
     { id: "report", title: "Cullen is back", text: "He has met four men at the water's edge – fishermen, they said – and has been paid to forget it. He is shaken; the money is in his pocket.",
-      note: "Historically the duty man took three men with rifles to the beach and the chief, Barnes, was called; the Navy and the Army were told from the station [S].",
+      note: "Historically the duty man took three men and Cullen, all with rifles, to the beach and the chief, Barnes, was called; the Navy and the Army were told from the station [S].",
       opts: [["chief", "Call the chief, send men to the beach, tell the Navy"], ["army", "Call the Army post first – it is five miles off"], ["fbi", "Telephone the FBI in New York yourself"]] },
     { id: "search", title: "On the beach", text: "Fog, low tide, no moon. Footprints run up into the dunes. The men are gone – inland, to the road, the village, the railway.",
       note: "Historically the beach and dunes were searched; the boxes were found at first light [S]. The four took a train to New York [L].",
@@ -25,7 +25,7 @@
       note: "Historically the FBI took the lead at an 11:00 conference; the Coast Guard kept a vest for its own inquiry until 17 June [S].",
       opts: [["hand", "Hand everything to the FBI as it lies"], ["keep", "Keep some pieces for the Coast Guard's own inquiry"], ["navy", "Report through the Navy and let them decide"]] },
     { id: "silence", title: "The men talk", text: "By noon Amagansett knows that something has happened on the beach. Your men are asked in the village.",
-      note: "The Coast Guard's own story came out through the Office of War Information on 15 July [S]; an 'unofficial report' of 'a lone unarmed Coast Guardsman' was in print on 29 June [O].",
+      note: "The Coast Guard's own story came out through the Office of War Information on 15 July [S]; an 'unofficial report' of 'a lone unarmed Coast Guardsman' was in print on 29 June [S].",
       opts: [["order", "Order silence – not a word, to anyone"], ["navy", "Leave it to the Navy to say what is said"]] }
   ];
   E.amaDecision = A => A.over ? null : AMA_DEC[A.step] || null;
@@ -39,7 +39,7 @@
       const base = { chief: 150, army: 120, fbi: 70 }[ch]; A.fbiAt = base + (A.lag || 0); A.t = 75;
       if (ch === "army") { A.cg -= 5; A.army = true; out.push("The Army post sends a truck of men; they are on the beach before 01:30. (game value)"); }
       if (ch === "fbi") { A.cg -= 10; A.evidence += 5; out.push(`The New York night desk takes the call at ${E.hhmm(A.fbiAt)} and writes it down. (game event)`); }
-      out.push(`The FBI knows by ${E.hhmm(A.fbiAt)} (historically after 02:30 – from the Army [S]).`);
+      out.push(`The FBI knows by ${E.hhmm(A.fbiAt)} (historically it already had it from the Army when the Navy called shortly after 02:30 [S]).`);
     }
     if (id === "search") {
       A.t = 330;
@@ -75,7 +75,7 @@
   E.newPv = seed => ({ r: (seed ^ 0x5bd1e995) >>> 0, h: 0, boats: { yp31: { at: "port", sea: 0 }, yp32: { at: "port", sea: 0 } }, army: null, aux: null, seen: null, northGap: 0, dec: {}, over: false });
   const PV_DEC = [
     { id: "army", title: "The Army's motor patrol", text: "The 104th Infantry's order of 3 June puts its motor patrol 'along the inhabited area of the beach road'. South of Ponte Vedra the road runs through empty dunes.",
-      note: "Historically the patrol kept to its order [S]; how many trucks and men it had, the record does not say.",
+      note: "Historically the order was in force that night and covered Ponte Vedra [S]; how many trucks and men the patrol had, and where it was at what hour, the record does not say.",
       opts: [["town", "Leave the Army to its order"], ["south", "Ask the Army to run part of the patrol south of Ponte Vedra"]] },
     { id: "aux", title: "Volunteers", text: "The Coast Guard Auxiliary is to 'provide volunteer beach patrols and lookouts' – on paper. Nobody has yet been posted on this beach.",
       note: "Rescue Order 1-42, June 1942 [S]. The organized beach patrol was ordered only on 25 July 1942 [S].",
@@ -84,7 +84,7 @@
   E.pvDecision = P => P.over ? null : (P.h === 0 && PV_DEC.find(d => !(d.id in P.dec))) || null;
   E.pvDecide = (P, id, ch) => { P.dec[id] = ch; if (id === "army") P.army = ch; if (id === "aux") P.aux = ch === "post"; return []; };
   E.pvClock = P => E.hhmm(20 * 60 + P.h * 60);
-  E.pvOrders = (P, b) => { if (b === "yp32" && P.h < 1) return [["port", "In port (crew ashore until 20:30)"]]; return D.ZONES.map(z => [z.id, z.name]); };
+  E.pvOrders = (P, b) => { if (b === "yp32" && P.h < 1) return [["port", "In port (not ready before 21:00 – game value)"]]; return D.ZONES.map(z => [z.id, z.name]); };
   E.pvEnd = (P, orders) => {
     const out = [];
     for (const b of ["yp31", "yp32"]) { const B = P.boats[b]; const o = orders[b] || B.at; B.at = o; if (o === "port") B.sea = Math.max(0, B.sea - 2); else B.sea++; }
@@ -136,7 +136,7 @@
       note: "Historically agents took Kerling south on the Silver Meteor; he showed them the place on 25 June [S]. No Coast Guard or Army man was there [S].",
       opts: [["take", "Take Kerling to Jacksonville"], ["search", "Ask the Army and Coast Guard to search the beach"], ["wait", "Wait until he names the place"]] },
     navy: { title: "Telling the Navy", text: "The Navy and the Coast Guard in Jacksonville do not know that Germans landed on their beach.",
-      note: "Historically naval intelligence learned of it 'by accident' on 26 June [S].",
+      note: "Historically naval intelligence in New York learned of it 'by accident' on 26 June [S].",
       opts: [["keep", "Keep it within the Bureau for now"], ["tell", "Tell the Navy in Jacksonville at once"]] },
     chicago: { title: "Chicago: Haupt and Neubauer", text: "Haupt is staying with his family; Neubauer in a hotel. Agents watch both.",
       note: "Historically both were taken on 27 June [S].",
@@ -230,13 +230,13 @@
       note: "Historically the FBI's account said only that the Coast Guard had 'intensified precautions' [S].",
       opts: [["precaution", "'Intensified precautions' – no more"], ["cullen", "Name the patrolman and what he did"], ["nothing", "Say nothing about the Coast Guard"]] },
     rumour: { title: "'A lone unarmed Coast Guardsman'", text: "An unofficial report is in the papers: a single unarmed Coast Guardsman met the first group.",
-      note: "Historically 'The FBI did not reveal how the dynamiters were caught' [O].",
+      note: "Historically 'The FBI did not reveal how the dynamiters were caught' [S].",
       opts: [["silent", "No comment"], ["confirm", "Confirm it"], ["deny", "Deny it"]] },
     commission: { title: "Before the commission", text: "Defence counsel want to know what happened to a telephone call to the New York office on 14 June.",
       note: "Historically McWhorter and Connelley testified, called by the defence: the memo was not sent on [S].",
       opts: [["straight", "Let the agents answer straight"], ["narrow", "Keep their answers as narrow as the questions"]] },
     lenient: { title: "Two of the eight", text: "Dasch came in of his own accord; Burger told everything from the first hour. The commission will sentence all eight; the President will decide.",
-      note: "Historically Biddle and Hoover asked the President to spare both [O]; two were spared 'because they helped the Government' [S].",
+      note: "Historically the commission itself recommended clemency for both, unanimously, and the Attorney General and the Judge Advocate General concurred; the two were spared 'because of their assistance to the Government' [S].",
       opts: [["both", "Ask the President to spare both"], ["dasch", "Ask for Dasch alone"], ["none", "Leave it to the commission"]] }
   };
   E.creditDecision = K => { if (K.over) return null; const st = D.CREDIT_STAGES[K.s]; return st && CR_DEC[st.id] && !(st.id in K.dec) ? Object.assign({ id: st.id }, CR_DEC[st.id]) : null; };

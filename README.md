@@ -12,6 +12,8 @@ A free browser game on the American side, in three scenarios:
 
 Nobody fights in this game. The commission's verdicts and the executions are fixed record, never a move.
 
+Play it and get the reader "The Documents" (PDF + EPUB) on itch.io: https://leofassb.itch.io/without-any-action
+
 ## Files
 
 - `index.html`, `play.html`, `guide.html`, `plates.html`: the pages.
